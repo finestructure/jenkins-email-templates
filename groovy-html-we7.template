@@ -32,6 +32,7 @@ td.test_failed { color:red; }
 .status .info{color:white!important;text-shadow:0 -1px 0 rgba(0,0,0,0.3);font-size:32px;line-height:36px;padding:8px 0}
 .main img{width:38px;margin-right:16px;height:38px}
 .main table th{text-align:right;}
+.coverage table th{text-align:right;}
 </style>
 <body>
 <div class="content round_border">
@@ -130,20 +131,16 @@ td.test_failed { color:red; }
 		<!-- coverage -->
 		<% if (it.coberturaAction != null) { %>
 			<% if (it.coberturaAction.result != null) { %>
+				<% def cr = it.coberturaAction.result %>
 				<div class="coverage round_border">
 					<b>Coverage report:</b>
 					<table>
-						<% def cr = it.coberturaAction.result %>
-						<tr>
-							<% cr.metrics.each { m -> %>
-								<td>${m.name}</td>
-							<% } %>
-						</tr>						
-						<tr>
-							<% cr.metrics.each { m -> %>
+						<% cr.metrics.each { m -> %>
+							<tr>
+								<th>${m.name}:</th>
 								<td>${cr.getCoverage(m).percentage}% (${cr.getCoverage(m)})</td>
-							<% } %>
-						</tr>
+							</tr>
+						<% } %>
 					</table>
 				</div>
 	        <% } %>
