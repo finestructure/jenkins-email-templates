@@ -127,6 +127,28 @@ td.test_failed { color:red; }
 		</div>
         <% } %>
 
+		<!-- coverage -->
+		<% if (it.coberturaAction != null) { %>
+			<% if (it.coberturaAction.result != null) { %>
+				<div class="coverage round_border">
+					<b>Coverage report:</b>
+					<table>
+						<% def cr = it.coberturaAction.result %>
+						<tr>
+							<% cr.metrics.each { m -> %>
+								<td>${m.name}</td>
+							<% } %>
+						</tr>						
+						<tr>
+							<% cr.metrics.each { m -> %>
+								<td>${cr.getCoverage(m).percentage}% (${cr.getCoverage(m)})</td>
+							<% } %>
+						</tr>
+					</table>
+				</div>
+	        <% } %>
+        <% } %>
+
 		<!-- CONSOLE OUTPUT -->
 		<% if(build.result==hudson.model.Result.FAILURE) { %>
 		<div class="console round_border">
