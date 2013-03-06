@@ -66,11 +66,11 @@ img.cartoon {width: 36px; display:inline}
 			
 		</div>
 		<!-- main -->
-        <% def artifacts = build.artifacts
+        <% def artifacts = build.artifacts.filter { it.contains('screenshots/') }
             if(artifacts != null && artifacts.size() > 0) { %>
         
 		<div class="artifacts round_border">
-			<b>Build Artifacts:</b>
+			<b>Screenshots:</b>
 			<ul>
             <% 		artifacts.each() { f -> %>		
                 <li><a href="${rooturl}${build.url}artifact/${f}">${f}</a></li>
@@ -78,7 +78,6 @@ img.cartoon {width: 36px; display:inline}
 			</ul>
 		</div>
         <% } %>
-        <!-- artifacts -->
 
         <% def changeSet = build.changeSet
         if(changeSet != null) {
