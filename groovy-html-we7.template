@@ -20,7 +20,8 @@ ol li img{display:inline;height:20px}
 .console td {
 	overflow:auto;
 	white-space:nowrap;
-} 
+}
+td.test_failed { color:red; }
 
 /*div styles*/
 .news{text-align:center;padding-top:15px;}
@@ -107,21 +108,21 @@ ol li img{display:inline;height:20px}
         <% } %>
 
 		<!-- details -->
-		<% def packages = it.JUnitTestResult
-		if (packages.isEmpty() != true) {
+		<% def junitResultList = it.JUnitTestResult
+		if (junitResultList.isEmpty() != true) {
 		%>
 		<div class="test_results round_border">
 			<b>Test results:</b>
 			
 		    <table>
-				<% packages.each() { package ->
-					 package.getChildren().each() { test -> %>
-						 <tr><td>Name: ${test.getName()}, failed: ${test.getFailCount()}, passed: ${test.getPassCount()}, skipped: ${test.getSkipCount()}, total: ${test.getPassCount() + test.getFailCount() + test.getSkipCount()}</td></tr>
-						 <% test.getFailedTests().each() { failed -> %>
-							 <tr><td><b><li>Failed: ${failed.getFullName()}</li></b></td></tr>
-		        <%          }
-			          }
-				   } %>
+				<% junitResultList.each() { jr ->
+					 jr.getChildren().each() { pr -> %>
+						 <tr><td>${pr.getName()} - passed: ${pr.getPassCount()}, failed: ${pr.getFailCount()}, skipped: ${pr.getSkipCount()}, total: ${pr.getPassCount() + pr.getFailCount() + pr.getSkipCount()}</td></tr>
+					     <% pr.getFailedTests().each() { t -> %>
+							 <tr><td class="test_failed"><b><li>Failed: ${t.getFullName()}</li></b></td></tr>
+ 		        <%          }
+			         }
+			       } %>
 			</table>
 		</div>
         <% } %>
