@@ -15,11 +15,10 @@ ol li img{display:inline;height:20px}
 	font-family:Courier New;
 	table-layout:fixed;
 	border-collapse: collapse;
-	width:720px;
+	width:706px;
 }
 .console td {
-	text-overflow:ellipsis;
-	overflow:hidden;
+	overflow:auto;
 	white-space:nowrap;
 } 
 
@@ -31,7 +30,6 @@ ol li img{display:inline;height:20px}
             build.result.toString() == "SUCCESS" ? 'green' : 'red' %>;font-size:28px;font-weight:bold;color:white;width:720px;height:52px;margin-bottom:18px;text-align:center;vertical-align:middle;border-collapse:collapse;background-repeat:no-repeat}
 .status .info{color:white!important;text-shadow:0 -1px 0 rgba(0,0,0,0.3);font-size:32px;line-height:36px;padding:8px 0}
 .main img{width:38px;margin-right:16px;height:38px}
-.main table{font-size:14px;}
 .main table th{text-align:right;}
 .bottom-message{width:720px;cellpadding:5px;cellspacing:0px}
 .bottom-message .message{font-size:13px;color:#aaa;line-height:18px;text-align:center}
@@ -126,9 +124,7 @@ img.cartoon {width: 36px; display:inline}
 		<div class="console round_border">
 			<table class="console">
 			<tr><td><b>Console output:</b></td></tr>
-			<% 	build.getLog(100).each() { line -> %>
-				<tr><td class="console">${line}</td></tr>
-			<% 	} %>
+				<tr><td class="console"><pre>${build.getLog(100).toArray().join('\n')}</pre></td></tr>
 			</table>
 		</div>
 		<% } %>
