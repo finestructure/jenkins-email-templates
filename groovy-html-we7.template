@@ -29,7 +29,7 @@ img.cartoon {width: 36px; display:inline}
 <body>
 <div class="content round_border">
 		<div class="status">
-			<p class="info">The build <%= build.result.toString().toLowerCase() %></p>
+			<p class="info"><%= build.result.toString() %></p>
 		</div>
 		<!-- status -->
 		<div class="main round_border">
