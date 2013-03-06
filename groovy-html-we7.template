@@ -73,7 +73,7 @@ img.cartoon {width: 36px; display:inline}
 			<b>Screenshots:</b>
 			<ul>
             <% 		artifacts.each() { f -> %>		
-				<%    if (f.contains('screenshots/')) { %>
+				<%    if (f.toString().contains('screenshots/')) { %>
                 <li><a href="${rooturl}${build.url}artifact/${f}">${f}</a></li>
 	            <%	  } %>                
             <%		} %>                
