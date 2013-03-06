@@ -100,6 +100,21 @@ img.cartoon {width: 36px; display:inline}
 		</div>
         <% } %>
 		<!-- details -->
+
+		<!-- CONSOLE OUTPUT -->
+		<% if(build.result==hudson.model.Result.FAILURE) { %>
+		<div class="console round_border">
+			<TABLE width="100%" cellpadding="0" cellspacing="0">
+			<TR><TD class="bg1"><B>Console output:</B></TD></TR>
+			<% 	build.getLog(100).each() { line -> %>
+				<TR><TD class="console">${line}</TD></TR>
+			<% 	} %>
+			</TABLE>
+			<BR/>
+		</div>
+		<% } %>
+
+
     </div>
 	<!-- content -->
 
