@@ -11,6 +11,18 @@ h4{font-size:22px;color:#4a72af!important;font-family:Arial,Helvetica,sans-serif
 h5{font-size:18px;color:#444!important;font-family:Arial,Helvetica,sans-serif}
 p{font-size:12px;color:#444!important;font-family:"Lucida Grande","Lucida Sans","Lucida Sans Unicode",sans-serif;line-height:1.5}
 ol li img{display:inline;height:20px}
+.console {
+	font-family:Courier New;
+	table-layout:fixed;
+	border-collapse: collapse;
+	width:720px;
+}
+.console td {
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+} 
+
 /*div styles*/
 .news{text-align:center;padding-top:15px;}
 .content{width:720px;margin:0 auto;background-color:white}
@@ -99,18 +111,25 @@ img.cartoon {width: 36px; display:inline}
 			</ol>
 		</div>
         <% } %>
+
 		<!-- details -->
+		<% def testResults = it.JUnitTestResult 
+		if (testResults.isEmpty() != true) {
+		%>
+		<div class="test_results round_border">
+			<b>Test results:</b>
+		</div>
+        <% } %>
 
 		<!-- CONSOLE OUTPUT -->
 		<% if(build.result==hudson.model.Result.FAILURE) { %>
 		<div class="console round_border">
-			<TABLE width="100%" cellpadding="0" cellspacing="0">
-			<TR><TD class="bg1"><B>Console output:</B></TD></TR>
+			<table class="console">
+			<tr><td><b>Console output:</b></td></tr>
 			<% 	build.getLog(100).each() { line -> %>
-				<TR><TD class="console">${line}</TD></TR>
+				<tr><td class="console">${line}</td></tr>
 			<% 	} %>
-			</TABLE>
-			<BR/>
+			</table>
 		</div>
 		<% } %>
 
