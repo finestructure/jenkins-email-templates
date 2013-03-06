@@ -142,10 +142,11 @@ td.test_failed { color:red; }
 							</tr>
 						<% } %>
 					</table>
+				<a href="${rooturl}${build.url}cobertura/_default_">file level detail</a>			
 				</div>
 	        <% } %>
         <% } %>
-
+		
 		<!-- CONSOLE OUTPUT -->
 		<% if(build.result==hudson.model.Result.FAILURE) { %>
 		<div class="console round_border">
