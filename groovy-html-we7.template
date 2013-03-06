@@ -107,11 +107,22 @@ ol li img{display:inline;height:20px}
         <% } %>
 
 		<!-- details -->
-		<% def testResults = it.JUnitTestResult 
-		if (testResults.isEmpty() != true) {
+		<% def packages = it.JUnitTestResult
+		if (packages.isEmpty() != true) {
 		%>
 		<div class="test_results round_border">
 			<b>Test results:</b>
+			
+		    <table>
+				<% packages.each() { package ->
+					 package.getChildren().each() { test -> %>
+						 <tr><td>Name: ${test.getName()}, failed: ${test.getFailCount()}, passed: ${test.getPassCount()}, skipped: ${test.getSkipCount()}, total: ${test.getPassCount() + test.getFailCount() + test.getSkipCount()}</td></tr>
+						 <% test.getFailedTests().each() { failed -> %>
+							 <tr><td><b><li>Failed: ${failed.getFullName()}</li></b></td></tr>
+		        <%          }
+			          }
+				   } %>
+			</table>
 		</div>
         <% } %>
 
