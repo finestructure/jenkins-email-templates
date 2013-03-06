@@ -27,12 +27,6 @@ ol li img{display:inline;height:20px}
 img.cartoon {width: 36px; display:inline}
 </style>
 <body>
-	<div class="news">
-		<p>
-			Do you like new format of build information? <a href="mailto:larry.caiyu@gmail.com">give me feedback</a>
-		</p>
-		<br>
-	</div>
 <div class="content round_border">
 		<div class="status">
 			<p class="info">The build <%= build.result.toString().toLowerCase() %></p>
