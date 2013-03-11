@@ -105,6 +105,9 @@ td.test_failed { color:red; }
             <%      count ++
                 }  %>
 			</ol>
+			<% if (! hadChanges) { %>
+				<p>No changes</p>
+			<% } %>
 		</div>
         <% } %>
 
